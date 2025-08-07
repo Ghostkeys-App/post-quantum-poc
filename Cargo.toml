@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/post-quantum-poc-backend"
+]
+resolver = "2"

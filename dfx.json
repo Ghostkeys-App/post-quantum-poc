@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "post-quantum-poc-backend": {
+      "candid": "src/post-quantum-poc-backend/post-quantum-poc-backend.did",
+      "package": "post-quantum-poc-backend",
+      "type": "rust"
+    },
+    "post-quantum-poc-frontend": {
+      "dependencies": [
+        "post-quantum-poc-backend"
+      ],
+      "source": [
+        "src/post-quantum-poc-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "post-quantum-poc-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
