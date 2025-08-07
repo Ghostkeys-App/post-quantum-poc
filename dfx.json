@@ -1,9 +1,44 @@
 {
   "canisters": {
-    "post-quantum-poc-backend": {
-      "candid": "src/post-quantum-poc-backend/post-quantum-poc-backend.did",
-      "package": "post-quantum-poc-backend",
-      "type": "rust"
+    "vault-canister": {
+      "candid": "src/canisters/vault-canister/vault-canister.did",
+      "package": "vault-canister",
+      "type": "custom",
+      "shrink": true,
+      "gzip": true,
+      "wasm": "target/wasm32-unknown-unknown/release/vault-canister.wasm",
+      "build": [
+        "cargo build --target wasm32-unknown-unknown --release -p vault-canister --locked",
+        "candid-extractor target/wasm32-unknown-unknown/release/vault-canister.wasm > src/canisters/vault-canister/vault-canister.did"
+      ],
+      "post_install": [
+        "dfx canister start vault-canister"
+      ],
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
+    },
+    "ecnryptor-canister": {
+      "candid": "src/canisters/encryptor-canister/ecnryptor-canister.did",
+      "package": "ecnryptor-canister",
+      "type": "custom",
+      "shrink": true,
+      "gzip": true,
+      "wasm": "target/wasm32-unknown-unknown/release/ecnryptor-canister.wasm",
+      "build": [
+        "cargo build --target wasm32-unknown-unknown --release -p ecnryptor-canister --locked",
+        "candid-extractor target/wasm32-unknown-unknown/release/ecnryptor-canister.wasm > src/canisters/encryptor-canister/ecnryptor-canister.did"
+      ],
+      "post_install": [
+        "dfx canister start ecnryptor-canister"
+      ],
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
     },
     "post-quantum-poc-frontend": {
       "dependencies": [
